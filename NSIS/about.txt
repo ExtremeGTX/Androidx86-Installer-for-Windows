@@ -1,0 +1,6 @@
+The following External components are used by Android UEFI Installer:
+- MaterialDesignXamlToolkit [ButchersBoy]
+- 7zip [Igor Pavlov]
+- mke2fs [Cygwin]
+- UEFILib [ExtremeGTX]
+- Android icon [benbackman]

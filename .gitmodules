@@ -1,0 +1,3 @@
+[submodule "source/Win32-UEFILibrary"]
+	path = source/Win32-UEFILibrary
+	url = https://github.com/ExtremeGTX/Win32-UEFILibrary

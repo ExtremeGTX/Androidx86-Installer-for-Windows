@@ -1,6 +1,5 @@
 # Compiled Object files
 *.slo
-*.lo
 *.o
 *.obj
 
@@ -8,21 +7,16 @@
 *.gch
 *.pch
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
-
-# Fortran module files
-*.mod
-
 # Compiled Static libraries
-*.lai
-*.la
-*.a
 *.lib
 
 # Executables
-*.exe
 *.out
-*.app
+
+#VisualStudio Files
+*.sdf
+*.opensdf
+*.suo
+ipch/
+[Bb]uild/
+obj/

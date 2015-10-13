@@ -1,0 +1,21 @@
+﻿<Window x:Class="Android_UEFIInstaller.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="466" Width="650" Loaded="Window_Loaded" ResizeMode="NoResize">
+    <Grid>
+        <Button Name="cmdInstall" Content="Install Android" HorizontalAlignment="Left" Margin="427,116,0,0" VerticalAlignment="Top" Width="205" Click="Button_Click" IsEnabled="True"/>
+        <Button Name="cmdRemove" Content="Cleanup Android" HorizontalAlignment="Left" VerticalAlignment="Top" Width="205" Click="Button_Click_1" Margin="427,141,0,0"/>
+        <TextBox Name="txtlog" HorizontalAlignment="Left" Height="232" Margin="10,193,0,0" Text="" VerticalAlignment="Top" Width="622" ScrollViewer.VerticalScrollBarVisibility="Visible" ScrollViewer.CanContentScroll="True" IsReadOnly="True"/>
+        <Label Content="Android x86 Installer - Beta 2.0 UEFI Version" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.763,-0.077"/>
+        <Label Content="WARNING: This version is beta and still has alot to fix, its for testing only" Foreground="Red" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.763,-0.077"/>
+        <Button Content="Browse" HorizontalAlignment="Left" Margin="251,116,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_2"/>
+        <TextBox Name="txtISOPath" HorizontalAlignment="Left" Height="23" Margin="69,113,0,0" TextWrapping="NoWrap" Text="" VerticalAlignment="Top" Width="163" IsReadOnly="True" AcceptsReturn="False" MaxLines="1" />
+        <ComboBox Name="cboSize" HorizontalAlignment="Left" Margin="69,141,0,0" VerticalAlignment="Top" Width="163" Height="23" Text="4000k">
+            <ComboBoxItem Content="4000k" HorizontalAlignment="Left" Width="161" IsSelected="True"/>
+        </ComboBox>
+        <Label Content="ISO File" HorizontalAlignment="Left" Margin="19,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.342,0.038" Height="25"/>
+        <Label Content="DataSize" HorizontalAlignment="Left" Margin="13,138,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.518,-0.077"/>
+        <Label Content="TargetDisk" HorizontalAlignment="Left" Margin="4,164,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="cboDrives" HorizontalAlignment="Left" Margin="69,167,0,0" VerticalAlignment="Top" Width="163" Height="20"/>
+    </Grid>
+</Window>
