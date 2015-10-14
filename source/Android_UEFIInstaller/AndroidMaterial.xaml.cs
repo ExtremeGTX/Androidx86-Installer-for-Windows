@@ -104,6 +104,28 @@ namespace Android_UEFIInstaller
                     .IsInRole(WindowsBuiltInRole.Administrator);
         }
 
+        public static bool IsCPU64bit()
+        {
+            //
+            // Machine Info
+            //
+            ManagementObjectSearcher objOSDetails = new ManagementObjectSearcher("SELECT * FROM Win32_Processor");
+            ManagementObjectCollection osDetailsCollection = objOSDetails.Get();
+
+            foreach (ManagementObject mo in osDetailsCollection)
+            {
+                Log.write("CPU Architecture: " + mo["Architecture"].ToString());
+                Log.write("CPU Name: " + mo["Name"].ToString());
+
+                UInt16 Arch = UInt16.Parse(mo["Architecture"].ToString());
+                if (Arch == 9) //x64
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
         void GetMachineInfo()
         {
             //
@@ -197,7 +219,14 @@ namespace Android_UEFIInstaller
             //
             if (!Environment.Is64BitOperatingSystem)
             {
-                Log.write("OS Type: ... fail");
+                Log.write("OS Type: 32-bit!");
+            }
+            //
+            // Check if CPU Arch. is 64-bit
+            //
+            if (!IsCPU64bit())
+            {
+                Log.write("CPU Architecture is not supported!");
                 return false;
             }
             //
