@@ -11,7 +11,7 @@ namespace Android_UEFIInstaller
 
         /* General Config */
         public const String BOOT_ENTRY_TEXT = "Android-OS";
-
+        public const long   ANDROID_SYSTEM_SIZE = 2147483648; /* Disk should have at least 2GB Free space for System ONLY */
         /* OS-Dir Config */
         public const String INSTALL_FOLDER = "AndroidOS";
         public const String INSTALL_DIR = @"{0}:\" + INSTALL_FOLDER;

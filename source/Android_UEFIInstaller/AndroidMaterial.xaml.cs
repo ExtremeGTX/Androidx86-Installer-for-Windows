@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Management;
 using System.Runtime.InteropServices;
@@ -288,11 +289,21 @@ namespace Android_UEFIInstaller
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            String Path=txtISOPath.Text;
+            String Drive=cboDrives.Text.Substring(0, 1);
+            String Size = Convert.ToUInt64((sldrSize.Value * 1024 * 1024 * 1024)/512).ToString();
+            
+            if(!File.Exists(Path))
+                MessageBox.Show("Android IMG File is not exist");
+            
+            if (Size == "0")
+                MessageBox.Show("Data Size is not set");
+
             UEFIInstaller u = new UEFIInstaller();
             DisableUI();
 
             //if (!u.Install(Environment.CurrentDirectory + @"\android-x86-4.4-r2.img", "E", "1000"))
-            if (!u.Install(txtISOPath.Text, cboDrives.Text.Substring(0, 1), cboSize.Text))
+            if (!u.Install(Path, Drive, Size))
                 MessageBox.Show("Install Failed");
             else
                 MessageBox.Show("Install Done");
@@ -342,7 +353,7 @@ namespace Android_UEFIInstaller
             cmdInstall.IsEnabled = false;
             cmdRemove.IsEnabled = false;
             cboDrives.IsEnabled = false;
-            cboSize.IsEnabled = false;
+            sldrSize.IsEnabled = false;
         }
 
         void EnableUI()
@@ -350,7 +361,7 @@ namespace Android_UEFIInstaller
             cmdInstall.IsEnabled = true;
             cmdRemove.IsEnabled = true;
             cboDrives.IsEnabled = true;
-            cboSize.IsEnabled = true;
+            sldrSize.IsEnabled = true;
         }
 
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)
@@ -366,10 +377,33 @@ namespace Android_UEFIInstaller
             }
         }
 
+        private void cboDrives_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+            long DiskSize = GetTotalFreeSpace(cboDrives.SelectedItem.ToString());
+
+            sldrSize.Maximum = ((DiskSize - config.ANDROID_SYSTEM_SIZE) / 1024 / 1024 / 1024);
+            sldrSize.Value = 0.1 * sldrSize.Maximum;
+            sldrSize.TickFrequency = 0.01 * sldrSize.Maximum;
+        }
+
         private void txtlog_TextChanged(object sender, TextChangedEventArgs e)
         {
 
             txtlog.ScrollToEnd();
         }
+
+        private long GetTotalFreeSpace(string driveName)
+        {
+            foreach (DriveInfo drive in DriveInfo.GetDrives())
+            {
+                if (drive.IsReady && drive.Name == driveName)
+                {
+                    return drive.AvailableFreeSpace;
+                }
+            }
+            return -1;
+        }
+
     }
 }

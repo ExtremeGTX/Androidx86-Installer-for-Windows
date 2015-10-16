@@ -179,7 +179,7 @@ namespace Android_UEFIInstaller
             Log.write("-Create Data.img");
 
             string ExecutablePath = Environment.CurrentDirectory + @"\dd.exe";
-            string ExecutableArgs = String.Format(@"if=/dev/zero of={0}\data.img ibs=1k count={1}", directory, Size.ToString());
+            string ExecutableArgs = String.Format(@"if=/dev/zero of={0}\data.img count={1}", directory, Size.ToString());
 
             if (!ExecuteCLICommand(ExecutablePath, ExecutableArgs))
                 return false;
