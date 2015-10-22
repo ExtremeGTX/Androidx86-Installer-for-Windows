@@ -145,7 +145,11 @@ namespace Android_UEFIInstaller
             Log.write("-Copy Boot files");
             try
             {
-                File.Copy(Environment.CurrentDirectory + @"\" + config.UEFI_GRUB_BIN64, directory + @"\" + config.UEFI_GRUB_BIN64, false);
+                if (Environment.Is64BitOperatingSystem)
+                    File.Copy(Environment.CurrentDirectory + @"\" + config.UEFI_GRUB_BIN64, directory + @"\" + config.UEFI_GRUB_BIN64, false);
+                else
+                    File.Copy(Environment.CurrentDirectory + @"\" + config.UEFI_GRUB_BIN32, directory + @"\" + config.UEFI_GRUB_BIN32, false);
+                
                 File.Copy(Environment.CurrentDirectory + @"\" + config.UEFI_GRUB_CONFIG, directory + @"\" + config.UEFI_GRUB_CONFIG, false);
                 return true;
             }
@@ -169,12 +173,23 @@ namespace Android_UEFIInstaller
                 return false;
             }
 
-            if (!UEFIWrapper.UEFI_MakeMediaBootOption(config.BOOT_ENTRY_TEXT, _Drive, config.UEFI_DIR + config.UEFI_GRUB_BIN64))
+            if (Environment.Is64BitOperatingSystem)
             {
-                Log.write("UEFI Entry Fail");
-                return false;
-            }
 
+                if (!UEFIWrapper.UEFI_MakeMediaBootOption(config.BOOT_ENTRY_TEXT, _Drive, config.UEFI_DIR + config.UEFI_GRUB_BIN64))
+                {
+                    Log.write("UEFI 64-bit Entry Fail");
+                    return false;
+                }
+            }
+            else
+            {
+                if (!UEFIWrapper.UEFI_MakeMediaBootOption(config.BOOT_ENTRY_TEXT, _Drive, config.UEFI_DIR + config.UEFI_GRUB_BIN32))
+                {
+                    Log.write("UEFI 32-bit Entry Fail");
+                    return false;
+                }
+            }
             return true;
         }
     }

@@ -31,6 +31,7 @@ Section
 	File "..\tools\dd.exe"
 	File "..\tools\grub.cfg"
 	File "..\tools\grubx64.efi"
+	File "..\tools\grubia32.efi"
 	File "..\tools\mke2fs.conf"
 	File "..\tools\mke2fs.exe"
 	File "..\Build\Debug\Android_UEFIInstaller.exe"
