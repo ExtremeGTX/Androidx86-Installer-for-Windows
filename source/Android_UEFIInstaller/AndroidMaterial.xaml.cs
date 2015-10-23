@@ -369,6 +369,7 @@ namespace Android_UEFIInstaller
             cmdRemove.IsEnabled = false;
             cboDrives.IsEnabled = false;
             sldrSize.IsEnabled = false;
+            ImgCmdBrowse.IsEnabled = false;
         }
 
         void EnableUI()
@@ -377,6 +378,7 @@ namespace Android_UEFIInstaller
             cmdRemove.IsEnabled = true;
             cboDrives.IsEnabled = true;
             sldrSize.IsEnabled = true;
+            ImgCmdBrowse.IsEnabled = true;
         }
 
         private void Image_MouseUp(object sender, MouseButtonEventArgs e)

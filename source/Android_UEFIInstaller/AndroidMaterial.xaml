@@ -90,7 +90,7 @@
 					<!-- Image Path -->
 					<TextBlock Grid.Column="0" Grid.Row="0" Text="Android Image" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="0,0,10,0" />
 					<TextBox  Name="txtISOPath" Grid.Column="1" Grid.Row="0" Text="Android .img file" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="12" Width="150" IsReadOnly="True" Foreground="Gray"/>
-					<Image Grid.Column="2" Grid.Row="0" Source="images\ic_launch_black_24dp_1x.png" Width="16" Stretch="Uniform" Margin="10,0,0,0" MouseUp="Image_MouseUp" ToolTip="Click to Browse android os .img file" HorizontalAlignment="Left"/>
+					<Image Name="ImgCmdBrowse" Grid.Column="2" Grid.Row="0" Source="images\ic_launch_black_24dp_1x.png" Width="16" Stretch="Uniform" Margin="10,0,0,0" MouseUp="Image_MouseUp" ToolTip="Click to Browse android os .img file" HorizontalAlignment="Left"/>
 					<!-- Target Partition -->
 					<TextBlock Grid.Column="0" Grid.Row="1" Text="Target Drive" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="12" Margin="0,0,10,0" />
 					<ComboBox Name="cboDrives" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Width="150" Height="20" Foreground="Gray" SelectionChanged="cboDrives_SelectionChanged"/>
