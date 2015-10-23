@@ -183,7 +183,12 @@ namespace Android_UEFIInstaller
             osDetailsCollection = objOSDetails.Get();
             foreach (ManagementObject mo in osDetailsCollection)
             {
-                Log.write("BIOS Version: " + mo["Caption"].ToString());
+                String[] iBIOS = (String[])mo["BIOSVersion"];
+                Log.write("BIOS info:");
+                foreach (String item in iBIOS)
+                {
+                    Log.write(item);
+                }
             }
 
             //
