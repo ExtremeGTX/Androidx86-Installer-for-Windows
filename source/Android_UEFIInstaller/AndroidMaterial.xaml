@@ -4,7 +4,7 @@
 		xmlns:p="clr-namespace:Android_UEFIInstaller.Properties"
 		xmlns:wpf="clr-namespace:MaterialDesignThemes.Wpf;assembly=MaterialDesignThemes.Wpf"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
-		Title="[ALPHA] [UEFI ONLY] Android x86 Installer v2.0" Height="500" Width="800"
+		Title="[ALPHA] [UEFI ONLY] Android x86 Installer " Height="500" Width="800"
 		TextElement.Foreground="{DynamicResource MaterialDesignBody}"
 		Background="{DynamicResource MaterialDesignPaper}"
 		TextElement.FontWeight="Medium"

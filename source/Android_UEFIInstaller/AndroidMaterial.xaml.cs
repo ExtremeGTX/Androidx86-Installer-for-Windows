@@ -38,6 +38,10 @@ namespace Android_UEFIInstaller
         public AndroidMaterial()
         {
             InitializeComponent();
+            
+            Version v = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+            this.Title += "v" + v.Major.ToString() + "." + v.Minor.ToString();
+
             DateTime d = new DateTime(2015, 11, 6);
             if (d <= DateTime.Today)
             { 
