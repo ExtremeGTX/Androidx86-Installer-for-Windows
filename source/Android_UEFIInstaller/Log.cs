@@ -12,17 +12,24 @@ namespace Android_UEFIInstaller
     public static class Log
     {
         private static System.Windows.Controls.TextBox _buffer;
+        private static System.Windows.Controls.TextBlock _lstatus;
         private static String _lbuffer;
 
         public static void write(String text)
         {
-            _buffer.AppendText(text + Environment.NewLine);
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                _buffer.AppendText(text + Environment.NewLine);
+            });
             _lbuffer += (text + Environment.NewLine);
         }
 
         public static void updateStatus(String text)
         {
-
+            Application.Current.Dispatcher.Invoke(() =>
+            {
+                _lstatus.Text = text;
+            }); 
         }
 
         public static void save()
@@ -35,6 +42,11 @@ namespace Android_UEFIInstaller
         public static void SetLogBuffer(System.Windows.Controls.TextBox buffer)
         {
             _buffer = buffer;
+        }
+
+        public static void SetStatuslabel(System.Windows.Controls.TextBlock buffer)
+        {
+            _lstatus = buffer;
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Management;
@@ -32,6 +33,8 @@ namespace Android_UEFIInstaller
 
         WindowsSecurity ws = new WindowsSecurity();
         IntPtr Handle;
+        BackgroundWorker InstallationTask;
+
         public AndroidMaterial()
         {
             InitializeComponent();
@@ -49,6 +52,7 @@ namespace Android_UEFIInstaller
             //Setup TxtLog for logging
             //
             Log.SetLogBuffer(txtlog);
+            Log.SetStatuslabel(lblStatus);
             //
             //SetupGlobalExceptionHandler
             //
@@ -292,23 +296,29 @@ namespace Android_UEFIInstaller
             String Path=txtISOPath.Text;
             String Drive=cboDrives.Text.Substring(0, 1);
             String Size = Convert.ToUInt64((sldrSize.Value * 1024 * 1024 * 1024)/512).ToString();
-            
-            if(!File.Exists(Path))
+
+            if (!File.Exists(Path))
+            {
                 MessageBox.Show("Android IMG File is not exist");
-            
+                return;
+            }
             if (Size == "0")
+            {
                 MessageBox.Show("Data Size is not set");
+                return;
+            }
 
-            UEFIInstaller u = new UEFIInstaller();
+            InstallationTask = new BackgroundWorker();
+            InstallationTask.WorkerReportsProgress = false;
+            InstallationTask.DoWork += InstallationTask_DoWork;
+            InstallationTask.ProgressChanged += InstallationTask_ProgressChanged;
+            InstallationTask.RunWorkerCompleted += InstallationTask_RunWorkerCompleted;
+
             DisableUI();
+            pbarStatus.IsIndeterminate = true;
 
-            //if (!u.Install(Environment.CurrentDirectory + @"\android-x86-4.4-r2.img", "E", "1000"))
-            if (!u.Install(Path, Drive, Size))
-                MessageBox.Show("Install Failed");
-            else
-                MessageBox.Show("Install Done");
-
-            EnableUI();
+            String[] InstallInfo = { Path, Drive, Size };
+            InstallationTask.RunWorkerAsync(InstallInfo);
         }
 
 
@@ -405,5 +415,34 @@ namespace Android_UEFIInstaller
             return -1;
         }
 
+        void InstallationTask_DoWork(object sender, DoWorkEventArgs e)
+        {
+            String[] InstallInfo = (String[])e.Argument;
+            String Path = InstallInfo[0];
+            String Drive = InstallInfo[1];
+            String Size = InstallInfo[2];
+
+            UEFIInstaller u = new UEFIInstaller();
+
+            //if (!u.Install(Environment.CurrentDirectory + @"\android-x86-4.4-r2.img", "E", "1000"))
+            if (!u.Install(Path, Drive, Size))
+                MessageBox.Show("Install Failed" + Environment.NewLine + "Please check log at C:\\AndroidInstall_XXX.log");
+            else
+                MessageBox.Show("Install Done");
+
+            MessageBox.Show("Kindly report back the installation status to the developer");
+        }
+
+        void InstallationTask_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        void InstallationTask_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            pbarStatus.IsIndeterminate = false;
+            EnableUI();
+        }
+       
     }
 }

@@ -73,13 +73,16 @@ namespace Android_UEFIInstaller
                 goto cleanup;
 
             Log.write("==========================================");
+            Log.updateStatus("Installation finished!");
             return true;
 
         cleanup:
+            Log.updateStatus("Installation failed, Rolling back");
             Log.write("==============Revert Installation==============");
             cleanup(InstallDirectory);
             UnInstallBootObjects(null);
             Log.write("==========================================");
+            Log.updateStatus("Nothing happend");
             return false;
         }
 
@@ -101,6 +104,7 @@ namespace Android_UEFIInstaller
             FirmwarePrivilege.Enable();
             UnInstallBootObjects(null);
             FirmwarePrivilege.Revert();
+            Log.updateStatus("Cleanup complete!");
             Log.write("==========================================");
         }
 
