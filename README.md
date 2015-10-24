@@ -12,20 +12,31 @@ This installer will help users install Android-x86 on PC from windows, without H
 
 ## Requirements
 - UEFI-Enabled x64 PC
+- Secure Boot Disabled
 - Windows 8/8.1/10
 - .Net Framework 4.5
 - Android System image with **UEFI** Support from [Android-x86.org](www.android-x86.org)
 
 
-## Tested devices
-- MSI Z97 Gaming 5
-- VMWare player 7
+## Change log
+v2.1
+ - User-defined Data size
+ - Responsive UI
+ - Installation Status update
+ - Support Devices with 32-bit firmware
+ - Support booting from NTFS with compression enabled
+ - log includes more info about Device BIOS
+
+v2.0
+ - Initial Version
+
 
 ## Build Instructions
 TODO
 
 
 ## External Components used:
+- GRUB2 Bootloader [GNU GRUB](https://www.gnu.org/software/grub/)
 - Android icon by [benbackman](http://benbackman.deviantart.com/art/Android-Icon-178754467)
 - MaterialDesignXamlToolkit by [ButchersBoy](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit)
 - 7zip by [Igor Pavlov](http://www.7-zip.org/)
