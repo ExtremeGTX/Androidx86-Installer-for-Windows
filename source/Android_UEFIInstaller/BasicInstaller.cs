@@ -153,7 +153,7 @@ namespace Android_UEFIInstaller
         {
             //7z.exe x android-x86-4.4-r2.img "efi" "kernel" "ramdisk.img" "initrd.img" "system.sfs" -o"C:\Users\ExtremeGTX\Desktop\installer_test\extracted\"
             string ExecutablePath = Environment.CurrentDirectory + @"\7z.exe";
-            string ExecutableArgs = String.Format("x {0} \"kernel\" \"ramdisk.img\" \"initrd.img\" \"system.sfs\" -o{1}", ISOFilePath, ExtractDirectory);    //{0} ISO Filename, {1} extraction dir
+            string ExecutableArgs = String.Format(" x \"{0}\" \"kernel\" \"ramdisk.img\" \"initrd.img\" \"system.sfs\" -o{1}", ISOFilePath, ExtractDirectory);    //{0} ISO Filename, {1} extraction dir
             //
             //Extracting ISO Contents
             //
