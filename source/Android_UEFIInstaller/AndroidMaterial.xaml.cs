@@ -41,13 +41,14 @@ namespace Android_UEFIInstaller
             
             Version v = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
             this.Title += "v" + v.Major.ToString() + "." + v.Minor.ToString();
-
+#if ALPHA_TRIAL
             DateTime d = new DateTime(2015, 11, 6);
             if (d <= DateTime.Today)
             { 
                 MessageBox.Show("This is an expired alpha testing version\nPlease check for the latest release, Application will exit ");
                 Environment.Exit(0);
             }
+#endif
             //
             //Update Version
             //
