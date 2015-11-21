@@ -19,6 +19,12 @@ This installer will help users install Android-x86 on PC from windows, without H
 
 
 ## Change log
+v2.2
+ - Fix reading large UEFI entries
+ - Fix using img file from path with spaces
+ - Trial period Removed
+ - Add GPU Options to GRUB Bootlist
+
 v2.1
  - User-defined Data size
  - Responsive UI
