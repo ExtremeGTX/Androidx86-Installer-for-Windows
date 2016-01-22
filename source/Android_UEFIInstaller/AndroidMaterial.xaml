@@ -69,11 +69,8 @@
 				<Rectangle Fill="LightGray" Height="1" Margin="0,0,0,150" Width="500" />
 				<!-- Description -->
 				<TextBlock FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,100"
-						   Text ="This installer will help you install Android x86 for you Device,This version targets UEFI Devices&#x0a;and modern Windows 8 Devices."/>
-
-				<TextBlock FontSize="12" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,40" Foreground="Red"
-						   Text ="This Version is alpha and may have critical bugs,it will stop functioning on 6 Nov. 2015,           &#x0a; please always check for the latest version."/>
-				<!-- Installation options -->
+						   Text ="This installer will help you install Android x86 for you Device,This version targets UEFI Devices&#xA;and modern Windows 8 Devices. No partitions will be formatted and no data will be corrupted"/>
+                <!-- Installation options -->
 				<Grid HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,180,0,70" >
 					<Grid.ColumnDefinitions>
 						<ColumnDefinition Width="50*"/>
