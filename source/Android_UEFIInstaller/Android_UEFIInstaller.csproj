@@ -43,14 +43,14 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>..\Build\Release\</OutputPath>
+    <OutputPath>..\..\Build\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'RemoteDebugging|AnyCPU'">
     <DebugSymbols>true</DebugSymbols>
-    <OutputPath>..\Build\RemoteDebug\</OutputPath>
+    <OutputPath>..\..\Build\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <DebugType>full</DebugType>
     <PlatformTarget>x86</PlatformTarget>
@@ -179,7 +179,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == RemoteDebugging cmd /c xcopy /Y /E "$(TargetDir)*" \\DEVTEST\android_installer
-if $(ConfigurationName) == RemoteDebugging cmd /c xcopy /Y /E "$(TargetDir)..\External_Files\*" \\DEVTEST\android_installer
+if $(ConfigurationName) == RemoteDebugging cmd /c xcopy /Y /E "$(TargetDir)..\..\tools\*" \\DEVTEST\android_installer
 echo "$(TargetDir)"</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
