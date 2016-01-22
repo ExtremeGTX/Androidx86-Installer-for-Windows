@@ -8,17 +8,21 @@ This installer will help users install Android-x86 on PC from windows, without H
 - Support Legacy-BIOS PCs
 - Install/Uninstall Android directly from Windows
 - Install to Any FAT32/NTFS partitions
-
+- No partition formatting or any data corruption
 
 ## Requirements
 - UEFI-Enabled x64 PC
 - Secure Boot Disabled
+- Bitlocker Disabled on target drive
 - Windows 8/8.1/10
 - .Net Framework 4.5
 - Android System image with **UEFI** Support from [Android-x86.org](www.android-x86.org)
 
 
 ## Change log
+v2.3
+ - Add Support for RemixOS
+
 v2.2
  - Fix reading large UEFI entries
  - Fix using img file from path with spaces
