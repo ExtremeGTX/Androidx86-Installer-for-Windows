@@ -22,6 +22,8 @@ namespace Android_UEFIInstaller
         public const String UEFI_GRUB_BIN64 = "grubx64.efi";
         public const String UEFI_GRUB_BIN32 = "grubia32.efi";
         public const String UEFI_GRUB_CONFIG = "grub.cfg";
+        public const String UEFI_GRUB_RX_CONFIG = "grub_remix.cfg";
+        public static bool RemixOS_Found = false;
 
         /* Log file */
         public const string LOG_FILE_PATH = @"C:\AndroidInstall_{0}.log";

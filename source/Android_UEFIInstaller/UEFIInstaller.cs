@@ -150,7 +150,11 @@ namespace Android_UEFIInstaller
                 else
                     File.Copy(Environment.CurrentDirectory + @"\" + config.UEFI_GRUB_BIN32, directory + @"\" + config.UEFI_GRUB_BIN32, false);
                 
-                File.Copy(Environment.CurrentDirectory + @"\" + config.UEFI_GRUB_CONFIG, directory + @"\" + config.UEFI_GRUB_CONFIG, false);
+                if (!config.RemixOS_Found)
+                    File.Copy(Environment.CurrentDirectory + @"\" + config.UEFI_GRUB_CONFIG, directory + @"\" + config.UEFI_GRUB_CONFIG, false);    //Android-x86
+                else
+                    File.Copy(Environment.CurrentDirectory + @"\" + config.UEFI_GRUB_RX_CONFIG, directory + @"\" + config.UEFI_GRUB_CONFIG, false);    //RemixOS
+
                 return true;
             }
             catch (Exception ex)

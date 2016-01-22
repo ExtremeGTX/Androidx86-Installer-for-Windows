@@ -30,6 +30,7 @@ Section
 	File "..\tools\cygwin1.dll"
 	File "..\tools\dd.exe"
 	File "..\tools\grub.cfg"
+	File "..\tools\grub_remix.cfg"
 	File "..\tools\grubx64.efi"
 	File "..\tools\grubia32.efi"
 	File "..\tools\mke2fs.conf"

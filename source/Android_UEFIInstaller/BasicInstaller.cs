@@ -54,6 +54,22 @@ namespace Android_UEFIInstaller
             if (!ExtractISO(ISOFilePath, InstallDirectory))
                 goto cleanup;
 
+            /*
+             * System.sfs found extract it
+             * System.sfs included in Androidx86 dist and not found with RemixOS
+             */
+            if (File.Exists(InstallDirectory + @"\system.sfs" ))
+            {
+                config.RemixOS_Found = false;
+                if (!ExtractSFS(InstallDirectory))
+                    goto cleanup;
+            }
+            else
+            {
+                config.RemixOS_Found = true;
+                Log.write("Android-x86 variant found");
+            }
+
             String[] FileList = {InstallDirectory + @"\kernel",
                                 InstallDirectory + @"\initrd.img",
                                 InstallDirectory + @"\ramdisk.img",
@@ -68,6 +84,8 @@ namespace Android_UEFIInstaller
             if (!FormatDataPartition(InstallDirectory))
                 goto cleanup;
 
+            if (!WriteAndroidIDFile(InstallDirectory))
+                goto cleanup;
             
             if (!InstallBootObjects(null))
                 goto cleanup;
@@ -153,7 +171,7 @@ namespace Android_UEFIInstaller
         {
             //7z.exe x android-x86-4.4-r2.img "efi" "kernel" "ramdisk.img" "initrd.img" "system.sfs" -o"C:\Users\ExtremeGTX\Desktop\installer_test\extracted\"
             string ExecutablePath = Environment.CurrentDirectory + @"\7z.exe";
-            string ExecutableArgs = String.Format(" x \"{0}\" \"kernel\" \"ramdisk.img\" \"initrd.img\" \"system.sfs\" -o{1}", ISOFilePath, ExtractDirectory);    //{0} ISO Filename, {1} extraction dir
+            string ExecutableArgs = String.Format(" x \"{0}\" \"kernel\" \"ramdisk.img\" \"initrd.img\" \"system.*\" -o{1}", ISOFilePath, ExtractDirectory);    //{0} ISO Filename, {1} extraction dir
             //
             //Extracting ISO Contents
             //
@@ -162,12 +180,20 @@ namespace Android_UEFIInstaller
             if (!ExecuteCLICommand(ExecutablePath, ExecutableArgs))
                 return false;
 
+            return true;
+        }
+
+        private Boolean ExtractSFS(String SFSPath)
+        {
+            //7z.exe x android-x86-4.4-r2.img "efi" "kernel" "ramdisk.img" "initrd.img" "system.sfs" -o"C:\Users\ExtremeGTX\Desktop\installer_test\extracted\"
+            string ExecutablePath = Environment.CurrentDirectory + @"\7z.exe";
+            string ExecutableArgs = String.Format(" x {0}\\system.sfs \"system.img\" -o{0}", SFSPath);
+            
             //
             //Extracting System.sfs
             //
             Log.updateStatus("Status: Extract SFS... Please wait");
             Log.write("-Extract SFS");
-            ExecutableArgs = String.Format(" x {0}\\system.sfs \"system.img\" -o{0}", ExtractDirectory);
             if (!ExecuteCLICommand(ExecutablePath, ExecutableArgs))
                 return false;
 
@@ -219,6 +245,14 @@ namespace Android_UEFIInstaller
 
             return true;
         }
+
+
+        private Boolean WriteAndroidIDFile(String filePath)
+        {
+            File.WriteAllText(filePath + @"\android.boot", "GRUB2_ANDROID_ID");
+            return File.Exists(filePath + @"\android.boot");
+        }
+
 
         protected abstract Boolean InstallBootObjects(Object extraData);
         protected abstract Boolean UnInstallBootObjects(Object extraData);
