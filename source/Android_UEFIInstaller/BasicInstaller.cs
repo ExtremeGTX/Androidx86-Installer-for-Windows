@@ -60,15 +60,12 @@ namespace Android_UEFIInstaller
              */
             if (File.Exists(InstallDirectory + @"\system.sfs" ))
             {
-                config.RemixOS_Found = false;
                 if (!ExtractSFS(InstallDirectory))
                     goto cleanup;
             }
-            else
-            {
-                config.RemixOS_Found = true;
-                Log.write("Android-x86 variant found");
-            }
+
+            if(!DetectAndroidVariant(ISOFilePath,InstallDirectory))
+                goto cleanup;
 
             String[] FileList = {InstallDirectory + @"\kernel",
                                 InstallDirectory + @"\initrd.img",
@@ -86,7 +83,7 @@ namespace Android_UEFIInstaller
 
             if (!WriteAndroidIDFile(InstallDirectory))
                 goto cleanup;
-            
+
             if (!InstallBootObjects(null))
                 goto cleanup;
 
@@ -253,6 +250,38 @@ namespace Android_UEFIInstaller
             return File.Exists(filePath + @"\android.boot");
         }
 
+        private Boolean DetectAndroidVariant(String ISOFilePath, String ExtractDirectory)
+        {
+            //Extract grub.cfg
+            //Check for androidboot.hardware value
+            //Set config.remixos
+
+            string ExecutablePath = Environment.CurrentDirectory + @"\7z.exe";
+            string ExecutableArgs = String.Format(" e \"{0}\" \"efi\\boot\\grub.cfg\" -o{1}", ISOFilePath, ExtractDirectory);
+
+            Log.updateStatus("Status: Check Android variant type...");
+            if (!ExecuteCLICommand(ExecutablePath, ExecutableArgs))
+                return false;
+
+            if (!File.Exists(ExtractDirectory + @"\grub.cfg"))
+                return false;
+
+            String grubcfg = File.ReadAllText(ExtractDirectory + @"\grub.cfg");
+
+            int idx = grubcfg.IndexOf("remix");
+            if (idx <= 0){
+                config.RemixOS_Found = false;
+            }
+            else
+            {
+                Log.write("RemixOS Found");
+                config.RemixOS_Found = true;
+            }
+
+            File.Delete(ExtractDirectory + @"\grub.cfg");
+            return true;
+
+        }
 
         protected abstract Boolean InstallBootObjects(Object extraData);
         protected abstract Boolean UnInstallBootObjects(Object extraData);
