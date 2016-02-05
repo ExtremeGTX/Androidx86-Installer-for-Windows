@@ -20,6 +20,10 @@ This installer will help users install Android-x86 on PC from windows, without H
 
 
 ## Change log
+v2.4
+ - Update Detection of RemixOS image
+ - Fix UEFI Init Fail with Surface Pro devices
+
 v2.3
  - Add Support for RemixOS
 
