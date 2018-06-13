@@ -176,6 +176,9 @@
   <ItemGroup>
     <Resource Include="images\ic_launch_black_24dp_1x.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\android-text.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>if $(ConfigurationName) == RemoteDebugging cmd /c xcopy /Y /E "$(TargetDir)*" \\DEVTEST\android_installer

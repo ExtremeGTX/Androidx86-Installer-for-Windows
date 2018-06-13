@@ -12,7 +12,7 @@
                 <ResourceDictionary>
                     <!-- include your primary palette -->
                     <ResourceDictionary.MergedDictionaries>
-                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.blue.xaml" />
+                        <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/MaterialDesignColor.Green.xaml" />
                     </ResourceDictionary.MergedDictionaries>
                     <!-- 
                             include three hues from the primary palette (and the associated forecolours).  
