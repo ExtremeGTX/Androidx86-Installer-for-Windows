@@ -15,14 +15,14 @@
 		SnapsToDevicePixels="True"
 		ResizeMode="NoResize"
 		WindowStartupLocation="CenterScreen"
-		Loaded="Window_Loaded" Icon="images/Android 512.png"
+		Loaded="Window_Loaded" Icon="Assets/Android 512.png"
 		>
 
 	<Grid>
 		<StackPanel>
 			<wpf:ColorZone Height="150" Padding="16" Effect="{StaticResource MaterialDesignShadowDepth2}" Mode="PrimaryMid">
 				<Button Style="{StaticResource MaterialDesignFloatingActionDarkButton}" HorizontalAlignment="Right" ToolTip="About">
-					<Image Source="images/ic_list_white_48dp_2x.png" HorizontalAlignment="Right" VerticalAlignment="Top" Width="24" SnapsToDevicePixels="True"/>
+					<Image Source="Assets/ic_list_white_48dp_2x.png" HorizontalAlignment="Right" VerticalAlignment="Top" Width="24" SnapsToDevicePixels="True"/>
 				</Button>
 			</wpf:ColorZone>
 
@@ -37,7 +37,7 @@
 
 			<Grid>
 				<Image Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Stretch="Uniform" Width="60"
-					   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Source="images/Android 512.png"/>
+					   HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10,10,0,0" Source="Assets/Android 512.png"/>
 
 				<Grid HorizontalAlignment="Left" VerticalAlignment="Top" Margin="80,20,0,0">
 					<Grid.ColumnDefinitions>
@@ -87,7 +87,7 @@
 					<!-- Image Path -->
 					<TextBlock Grid.Column="0" Grid.Row="0" Text="Android Image" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Margin="0,0,10,0" />
 					<TextBox  Name="txtISOPath" Grid.Column="1" Grid.Row="0" Text="Android .img file" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="12" Width="150" IsReadOnly="True" Foreground="Gray"/>
-					<Image Name="ImgCmdBrowse" Grid.Column="2" Grid.Row="0" Source="images\ic_launch_black_24dp_1x.png" Width="16" Stretch="Uniform" Margin="10,0,0,0" MouseUp="Image_MouseUp" ToolTip="Click to Browse android os .img file" HorizontalAlignment="Left"/>
+					<Image Name="ImgCmdBrowse" Grid.Column="2" Grid.Row="0" Source="Assets\ic_launch_black_24dp_1x.png" Width="16" Stretch="Uniform" Margin="10,0,0,0" MouseUp="Image_MouseUp" ToolTip="Click to Browse android os .img file" HorizontalAlignment="Left"/>
 					<!-- Target Partition -->
 					<TextBlock Grid.Column="0" Grid.Row="1" Text="Target Drive" HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="12" Margin="0,0,10,0" />
 					<ComboBox Name="cboDrives" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="12" Width="150" Height="20" Foreground="Gray" SelectionChanged="cboDrives_SelectionChanged"/>

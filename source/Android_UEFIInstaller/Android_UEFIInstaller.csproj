@@ -92,32 +92,24 @@
     <Compile Include="AndroidMaterial.xaml.cs">
       <DependentUpon>AndroidMaterial.xaml</DependentUpon>
     </Compile>
-    <Compile Include="config.cs" />
-    <Compile Include="Privilege\NativeMethods.cs" />
-    <Compile Include="Privilege\Privilege.cs" />
-    <Compile Include="Privilege\PrivilegeNotHeldException.cs" />
-    <Compile Include="UEFIInstaller.cs" />
-    <Compile Include="UEFIWrapper.cs" />
-    <Compile Include="Win32Native.cs" />
-    <Compile Include="WindowsSecurity.cs" />
+    <Compile Include="Core\config.cs" />
+    <Compile Include="Core\WindowsSecurity\NativeMethods.cs" />
+    <Compile Include="Core\WindowsSecurity\Privilege.cs" />
+    <Compile Include="Core\WindowsSecurity\PrivilegeNotHeldException.cs" />
+    <Compile Include="Core\UEFIInstaller.cs" />
+    <Compile Include="Core\UEFIWrapper.cs" />
+    <Compile Include="Core\WindowsSecurity\Win32Native.cs" />
+    <Compile Include="Core\WindowsSecurity\WindowsSecurity.cs" />
     <Page Include="AndroidMaterial.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="BasicInstaller.cs" />
-    <Compile Include="Log.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Core\BasicInstaller.cs" />
+    <Compile Include="Core\Log.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -168,13 +160,13 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\Android 512.png" />
+    <Resource Include="Assets\Android 512.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\ic_list_white_48dp_2x.png" />
+    <Resource Include="Assets\ic_list_white_48dp_2x.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\ic_launch_black_24dp_1x.png" />
+    <Resource Include="Assets\ic_launch_black_24dp_1x.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
